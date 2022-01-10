@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "discord-rich-presence": "^0.0.8",
     "discord.js": "^13.5.1"
   },
   "devDependencies": {
