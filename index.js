@@ -16,7 +16,8 @@ const prefix = process.env.prefix
 const Discord = require("discord.js");
 const fs = require('fs');
 
-//Commands module
+
+//commands module
 client.commands = new Discord.Collection()
 const commandFiles = fs.readdirSync('./functions/commands').filter(file => file.endsWith('js'))
 for (const file of commandFiles) {
@@ -28,9 +29,9 @@ for (const file of commandFiles) {
 //on message
 client.on('message', msg => {
   client.commands.get('test').execute(msg)
+})
 
-
-//Automations module
+//automations module
 client.automations = new Discord.Collection()
 const automatedFiles = fs.readdirSync('./functions/automated').filter(file => file.endsWith('js'))
 for (const file of automatedFiles) {
@@ -38,15 +39,14 @@ for (const file of automatedFiles) {
 
   client.automations.set(path.parse(file).name, automations)
 }
-})
 
 //On Ready
 client.on('ready', () => {
   console.log("connected as " + client.user.tag)
   client.user.setActivity("Javascript", { type: "PLAYING" })
   console.log("game changed to Javascript")
-  console.log('bot prefix is: ' + prefix)
-  console.log('bot is ready')
+  console.log(client.user.tag + ' is ready')
+  console.log('prefix:' + prefix)
 })
 
 // Join to Create
@@ -87,7 +87,7 @@ client.on("voiceStateUpdate", (oldState, newState) => { // Listening to the voic
   const newJoined = newState.channel
   const oldJoined = oldState.channel
 
-  if (newJoined && newState.member.user.id === '368418491566522371' && newJoined.name === '⚫︱Offline' && newJoined.parent.id === '741005927641251932') { // The member connected to a channel.
+  if (newJoined && newState.member.user.id === '429730636517867530' && newJoined.name === '⚫︱Offline' && newJoined.parent.id === '741005927641251932') { // The member connected to a channel.
 
     console.log(`- ON AIR JOIN: ${oldState.member.user.tag} connected to ${newState.channel.name}`)
 
@@ -97,7 +97,7 @@ client.on("voiceStateUpdate", (oldState, newState) => { // Listening to the voic
 
   } else {
 
-    if (oldJoined && oldState.member.user.id === '368418491566522371' && oldJoined.name === '🔴︱On Air') { // The member disconnected from a channel.
+    if (oldJoined && oldState.member.user.id === '429730636517867530' && oldJoined.name === '🔴︱On Air') { // The member disconnected from a channel.
       console.log(`- ON AIR LEFT: ${oldState.member.user.tag} disconnected from ${oldState.channel.name}`)
 
       newState.guild.channels.create('⚫︱Offline', {
